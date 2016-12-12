@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Forking Workflow</title>
+	</head>
+
+	<body>
+
+		<header id="cabecera">
+
+			<h1 id="titulo">Forking Workflow: Guide</h1>
+
+			<nav class="menuPrincipal"> 
+				<span id="seleccion">Forking</span> | 
+				<a class="rutas" href="#"> Integrantes</a> | 
+				<a href="#">GitHub</a> 
+			</nav>
+
+		</header>
+		
+		<body>
+
+			<div id="menuIz"> 
+				<ul class="miLista">
+					<li>¿Qué es Forking?</li>
+					<li>¿Para qué sirve?</li>
+					<li>¿Y en qué se diferencia un fork de un clon?</li>
+					<li>Haciendo Fork de un repositorio en GitHub</li>
+				</ul>
+			</div>
+		
+			<div class="contenido">
+				<h2>¿Qué es Forking?</h2>
+				<p>La palabra fork se traduce al castellano, dentro del contexto que nos ocupa, como bifurcación. Cuando hacemos un fork de un repositorio, se hace una copia exacta en crudo (en inglés “bare”) del repositorio original que podemos utilizar como un repositorio git cualquiera. Después de hacer fork tendremos dos repositorios git idénticos pero con distinta URL. Justo después de hacer el fork, estos dos repositorios tienen exactamente la misma historia, son una copia idéntica. Finalizado el proceso, tendremos dos repositorios independientes que pueden cada uno evolucionar de forma totalmente autónoma. De hecho, los cambios que se hacen el repositorio original NO se transmiten automáticamente a la copia (fork). Esto tampoco ocurre a la inversa: las modificaciones que se hagan en la copia (fork) NO se transmiten automáticamente al repositorio original.</p>
+			</div>
+
+			<div class="contenido">
+				<h2>¿Para qué sirve?</h2>
+				<p>Tiene varios usos. El más común es el de permitir a los desarrolladores contribuir a un proyecto de forma segura.</p>
+
+				<p>¿Porqué decimos de forma segura? Imaginaos un super proyecto como puede ser el código fuente de Apache. ¿Cómo se trabajaba antes de existir git? con Subversion o CVS existía un servidor centralizado que tenía dos tipos de usuarios: lo que podían “escribir” en el repositorio (subir cambios al código fuente) y los que sólo podían “leer” el repositorio. Estos últimos sólo podían bajarse el código a su máquina y podían modificarlo sólo en su copia local. No podían subir ninguna modificación al servidor central.</p>
+
+				<p>¿Qué tenías que hacer para contribuir? Tenías que solicitar permiso de escritura y que alguien te lo diese. Una vez te lo concedían, ya podías subir tus modificaciones y, por supuesto, liarla si no sabías lo que estabas haciendo. Otra opción era enviar parches, trabajar con ramas… había varias formas pero todas bastante engorrosas.</p>
+
+				<p>Además, este procedimiento de dar acceso de escritura a un repositorio centralizado es un poco arriesgado. Siguiendo con el ejemplo que he puesto de Apache ¿cómo sé yo, responsable del repositorio, que esta persona que está a 10000Km de mí en la otra punta del planeta sabe lo que está haciendo? ¿puedo confiar en él?. Al final, contribuir a un proyecto se convertía en una tarea tediosa tanto para el que pretendía contribuir como para el que lo tenía que gestionar. Y no hablemos de lo divertido que era hacer un merge…</p>
+
+				<p>Git, al tratarse de un sistema distribuido, resuelve este tipo de problemas de una forma muy elegante a través de los forks. Digamos que Miquel es una persona que quiere contribuir al proyecto. Ha encontrado un bug y sabe cómo corregirlo. Como propietario del repositorio me interesa que Miquel pueda enviarme el parche de forma rápida, que no pierda mucho tiempo. Si es así ¡Miquel estará encantado de colaborar con nosotros! ;-). Además, necesito que el proceso sea ágil, no quiero tener que invertir 5 horas de mi tiempo cada vez que tenga que hacer un merge del trabajo que Miquel me envíe. ¿Cómo resuelve git el problema?</p>
+
+				<p>
+					<ul>
+  						<il>Miquel hace un fork de mi repositorio, para lo que sólo necesito darle permiso de lectura.</il>
+							<il>Miquel trabaja en SU COPIA (fork) del repositorio. Como es suya, puede hacer lo que quiera, la puede borrar, corromper, dinamitar, reescribir la historia del proyecto… nos da lo mismo, es SU COPIA (fork).</il>
+							<il>Cuando Miquel termina de programar y testear el parche, me avisa de que ya lo tiene y me dice “En la rama parche_de_Miquel de MI COPIA (fork), tienes el parche que corrige el Bug XXXX”.</il>
+							<il>Yo voy a su repositorio, miro lo que ha hecho y si está bien lo incorporo (merge) a mi repositorio, que es el original.</il>
+					</ul>
+				</p>
+
+				<p>Las ventajas de este proceso son las siguientes:</p>
+
+				<p>
+					<ul>
+						<il>Miquel trabaja con SU COPIA. En ningún momento le tengo que dar acceso al repositorio central.</il>
+						<il>El proceso de incorporación de los cambios de Miquel es muy sencillo. Si no hay conflictos en los ficheros puede que sea tan simple como ejecutar un par de comandos git.</il>
+						<il>Miquel tiene muy fácil contribuir, no le cuesta esfuerzo.</il>
+						<il>Yo puedo gestionar muy fácilmente las contribuciones de muchas personas ¡me cuesta muy poco trabajo!</il>
+					</ul>
+				</p>
+
+				<p>Ahora cierra los ojos e imagina que esto mismo lo pudieses hacer con tus compañeros de trabajo, en tu equipo…</p>
+			</div>
+
+			<div class="contenido">
+				<h2>¿Y en qué se diferencia un fork de un clon?</h2>
+				<p>Cuando hacemos un clon de un repositorio, te bajas una copia del mismo a tu máquina. Empiezas a trabajar, haces modificaciones y haces un push. Cuando haces el push estás modificando el repositorio que has clonado.</p>
+
+				<p>Cuando haces un fork de un repositorio, se crea un nuevo repositorio en tu cuenta de Github o Bitbucket, con una URL diferente (fork). Acto seguido tienes que hacer un clon de esa copia sobre la que empiezas a trabajar de forma que cuando haces push, estás modificando TU COPIA (fork). El repositorio original sigue intacto. Lo vamos a ver en breve con un ejemplo.</p>
+			</div>
+
+			<div class="contenido">
+				<h2>Haciendo Fork de un repositorio en Github</h2>
+				<p></p>
+			</div>
+
+
+
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
